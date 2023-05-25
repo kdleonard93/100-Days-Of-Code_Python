@@ -18,9 +18,3 @@ while quiz.still_has_questions():
 
 print("You have finished the quiz")
 print(f"Your final score is {quiz.score}/{quiz.question_number}")
-
-
-
-
-# for question in question_bank:    
-#     print(f"Text: {question.text}\nAnswer: {question.answer}")

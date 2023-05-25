@@ -11,7 +11,15 @@ jobs:
 
     steps:
       - name: Delete branch
-        uses: devmasx/merge-branch-action@v1.2.0
+        uses: actions/github-script@v4
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: ${{ github.event.pull_request.head.ref }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const { owner, repo } = context.repo
+            const branch = context.payload.pull_request.head.ref
+            console.log(`Deleting ${branch}...`)
+            await github.rest.git.deleteRef({
+              owner,
+              repo,
+              ref: 'heads/' + branch
+            })
