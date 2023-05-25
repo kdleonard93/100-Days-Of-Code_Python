@@ -17,7 +17,7 @@ jobs:
             const { owner, repo } = context.repo
             const branch = context.payload.pull_request.head.ref
             console.log(`Deleting ${branch}...`)
-            await octokit.git.deleteRef({
+            await github.git.deleteRef({
               owner,
               repo,
               ref: 'heads/' + branch
