@@ -15,15 +15,11 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-          const { owner, repo } = context.repo
-          const branch = context.payload.pull_request.head.ref
-          console.log(`Deleting ${branch}...`)
-          if (branch !== 'main' && branch !== 'master') {
+            const { owner, repo } = context.repo
+            const branch = context.payload.pull_request.head.ref
+            console.log(`Deleting ${branch}...`)
             await github.rest.git.deleteRef({
               owner,
               repo,
               ref: 'heads/' + branch
             })
-          } else {
-            console.log(`Not deleting ${branch} because it is a protected branch.`)
-          }
