@@ -8,7 +8,6 @@ jobs:
   cleanup:
     runs-on: ubuntu-latest
     if: github.event.pull_request.merged == true
-
     steps:
       - name: Delete branch
         uses: actions/github-script@v6
@@ -18,8 +17,12 @@ jobs:
             const { owner, repo } = context.repo
             const branch = context.payload.pull_request.head.ref
             console.log(`Deleting ${branch}...`)
-            await github.rest.git.deleteRef({
-              owner,
-              repo,
-              ref: 'heads/' + branch
-            })
+            if (branch !== 'main' && branch !== 'master') {
+              return github.rest.git.deleteRef({
+                owner,
+                repo,
+                ref: 'heads/' + branch
+              })
+            } else {
+              console.log(`Not deleting ${branch} because it is a protected branch.`)
+            }
