@@ -13,11 +13,12 @@ jobs:
       - name: Delete branch
         uses: actions/github-script@v6
         with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             const { owner, repo } = context.repo
             const branch = context.payload.pull_request.head.ref
             console.log(`Deleting ${branch}...`)
-            await github.git.deleteRef({
+            await github.rest.git.deleteRef({
               owner,
               repo,
               ref: 'heads/' + branch
