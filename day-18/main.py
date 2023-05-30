@@ -1,7 +1,7 @@
 from turtle import Turtle, Screen
+import _tkinter
+import random
+import colorgram
 
-tim_turtle = Turtle()
-
-screen = Screen()
-
-screen.exitonclick()
+colors = colorgram.extract('image.jpeg', 30)
+print(colors)
