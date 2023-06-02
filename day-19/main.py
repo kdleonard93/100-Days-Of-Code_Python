@@ -3,7 +3,6 @@ import random
 
 tim = Turtle()
 screen = Screen()
-tim.shape("circle")
 
 def move_forward():
     tim.forward(10)
