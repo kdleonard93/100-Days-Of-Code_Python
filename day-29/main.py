@@ -46,7 +46,7 @@ def save_password():
 # ---------------------------- DELETE TEXT FILE ------------------------------- #
 
 def delete_text_file():
-    file_path = Path("secrete_logins.txt")
+    file_path = Path(".secrete_logins.txt")
     
     if file_path.exists():
         file_path.unlink()
