@@ -33,7 +33,7 @@ def save_password():
     
     saved_data = f"Website: {website} | Username: {username} | Password: {password}\n"
     
-    file_path = "secrete_logins.txt"
+    file_path = ".secrete_logins.txt"
     
     with open(file_path, 'a') as file:
         file.write(saved_data)
