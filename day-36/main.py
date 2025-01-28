@@ -1,6 +1,9 @@
 import requests
 import os
 from twilio.rest import Client
+from dotenv import load_dotenv
+
+load_dotenv()
 
 VIRTUAL_TWILIO_NUMBER = "your virtual twilio number"
 VERIFIED_NUMBER = "your own phone number verified with Twilio"
