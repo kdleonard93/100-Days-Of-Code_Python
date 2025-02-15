@@ -1,0 +1,1 @@
+## Skipped these days since it was just more basic html and css
