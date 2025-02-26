@@ -1,14 +1,18 @@
-import os
-from bs4 import BeautifulSoup
 import requests
+from bs4 import BeautifulSoup
 
-response = requests.get("https://news.ycombinator.com/news")
+URL = "https://web.archive.org/web/20200518073855/https://www.empireonline.com/movies/features/best-movies-2/"
 
-url = response.text
-    
-soup = BeautifulSoup(url, 'html.parser')
+response = requests.get(URL)
+website_html = response.text
 
-hacker_news_post_links = soup.select("a", class_="titleline")
+soup = BeautifulSoup(website_html, "html.parser")
 
-for link in hacker_news_post_links: 
-    print(link.get("href"))
+all_movies = soup.find_all(name="h3", class_="title")
+
+movie_titles = [movie.getText() for movie in all_movies]
+movies = movie_titles[::-1]
+
+with open("movies.txt", mode="w") as file:
+    for movie in movies:
+        file.write(f"{movie}\n")
