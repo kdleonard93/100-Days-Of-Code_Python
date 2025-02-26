@@ -1,10 +1,14 @@
 import os
 from bs4 import BeautifulSoup
+import requests
 
-file_path = "day-45/website.html"
-with open(file_path) as file:
-    data = file.read()
+response = requests.get("https://news.ycombinator.com/news")
+
+url = response.text
     
-soup = BeautifulSoup(data, 'html.parser')
+soup = BeautifulSoup(url, 'html.parser')
 
-print(soup.prettify())
+hacker_news_post_links = soup.select("a", class_="titleline")
+
+for link in hacker_news_post_links: 
+    print(link.get("href"))
