@@ -5,6 +5,8 @@
     "python.formatting.provider": "none",
     "cSpell.words": [
         "columnspan",
+        "dotenv",
+        "firecrawl",
         "pixela",
         "SHEETY"
     ]
